@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
-import java.util.Objects;
 
 @Component
 public class JWTUtil {
@@ -49,6 +48,6 @@ public class JWTUtil {
     }
 
     public Boolean validateToken(String username, UserDetails userDetails, String token) {
-        return Objects.equals(username, userDetails.getUsername()) && !isExpired(token);
+        return username.equals(userDetails.getUsername()) && !isExpired(token);
     }
 }
