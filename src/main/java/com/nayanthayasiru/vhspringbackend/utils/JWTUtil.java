@@ -28,4 +28,12 @@ public class JWTUtil {
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
+    public String extractUsername(String token) {
+        return Jwts.parserBuilder().setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJwt(token)
+                .getBody()
+                .getSubject();
+    }
 }
