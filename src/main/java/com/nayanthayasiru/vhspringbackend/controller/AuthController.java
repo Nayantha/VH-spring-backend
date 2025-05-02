@@ -21,7 +21,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> login(@RequestBody RegisterRequestDTO registerRequestDTO) {
+    public ResponseEntity<?> register(@RequestBody RegisterRequestDTO registerRequestDTO) {
         if (customerDetailsService.existsByUsername(registerRequestDTO.username())) {
             return ResponseEntity.badRequest().body("Username already exists.");
         }
