@@ -1,7 +1,9 @@
 package com.nayanthayasiru.vhspringbackend.controller;
 
+import com.nayanthayasiru.vhspringbackend.models.DTOs.AuthRequestDTO;
 import com.nayanthayasiru.vhspringbackend.models.DTOs.AuthResponseDTO;
 import com.nayanthayasiru.vhspringbackend.models.DTOs.RegisterRequestDTO;
+import com.nayanthayasiru.vhspringbackend.services.AuthService;
 import com.nayanthayasiru.vhspringbackend.services.impl.CustomerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ public class AuthController {
 
     @Autowired
     private CustomerDetailsService customerDetailsService;
+    @Autowired
+    private AuthService authService;
 
 
     @PostMapping("/register")
@@ -33,6 +37,11 @@ public class AuthController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> authenticate(@RequestBody AuthRequestDTO authRequestDTO) {
+        return ResponseEntity.ok().body(authService.authenticate(authRequestDTO));
     }
 }
 
