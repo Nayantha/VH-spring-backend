@@ -1,8 +1,8 @@
 package com.nayanthayasiru.vhspringbackend.controller;
 
 import com.nayanthayasiru.vhspringbackend.models.DTOs.AuthRequestDTO;
-import com.nayanthayasiru.vhspringbackend.models.DTOs.AuthResponseDTO;
 import com.nayanthayasiru.vhspringbackend.models.DTOs.RegisterRequestDTO;
+import com.nayanthayasiru.vhspringbackend.models.DTOs.RegisterResponseDTO;
 import com.nayanthayasiru.vhspringbackend.services.AuthService;
 import com.nayanthayasiru.vhspringbackend.services.impl.CustomerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body("Username already exists.");
         }
         try {
-            AuthResponseDTO customerDTO = customerDetailsService.registerCustomer(registerRequestDTO);
+            RegisterResponseDTO customerDTO = customerDetailsService.registerCustomer(registerRequestDTO);
             return ResponseEntity
                     .created(URI.create("/customers/" + customerDTO.id()))
                     .body(customerDTO);

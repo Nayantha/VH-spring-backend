@@ -1,8 +1,8 @@
 package com.nayanthayasiru.vhspringbackend.services.impl;
 
 import com.nayanthayasiru.vhspringbackend.models.Customer;
-import com.nayanthayasiru.vhspringbackend.models.DTOs.AuthResponseDTO;
 import com.nayanthayasiru.vhspringbackend.models.DTOs.RegisterRequestDTO;
+import com.nayanthayasiru.vhspringbackend.models.DTOs.RegisterResponseDTO;
 import com.nayanthayasiru.vhspringbackend.repositories.CustomerRepository;
 import com.nayanthayasiru.vhspringbackend.services.CustomerDetailsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +25,12 @@ public class CustomerDetailsService implements UserDetailsService, CustomerDetai
     }
 
     @Override
-    public AuthResponseDTO registerCustomer(RegisterRequestDTO registerRequestDTO) {
+    public RegisterResponseDTO registerCustomer(RegisterRequestDTO registerRequestDTO) {
         Customer newCustomer = RegisterRequestDTO.fromDTO(registerRequestDTO, passwordEncoder);
 
         Customer savedCustomer = customerRepository.save(newCustomer);
 
-        return AuthResponseDTO.fromClass(savedCustomer);
+        return RegisterResponseDTO.fromClass(savedCustomer);
     }
 
     @Override
