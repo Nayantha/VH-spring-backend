@@ -1,5 +1,6 @@
 package com.nayanthayasiru.vhspringbackend.utils;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -30,10 +31,14 @@ public class JWTUtil {
     }
 
     public String extractUsername(String token) {
+        return extractClaims(token)
+                .getSubject();
+    }
+
+    private Claims extractClaims(String token) {
         return Jwts.parserBuilder().setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJwt(token)
-                .getBody()
-                .getSubject();
+                .getBody();
     }
 }
