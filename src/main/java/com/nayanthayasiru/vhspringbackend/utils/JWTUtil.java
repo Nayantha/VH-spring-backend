@@ -5,10 +5,12 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.Objects;
 
 @Component
 public class JWTUtil {
@@ -44,5 +46,9 @@ public class JWTUtil {
 
     public Boolean isExpired(String token) {
         return extractClaims(token).getExpiration().before(new Date());
+    }
+
+    public Boolean validateToken(String username, UserDetails userDetails, String token) {
+        return Objects.equals(username, userDetails.getUsername()) && !isExpired(token);
     }
 }
