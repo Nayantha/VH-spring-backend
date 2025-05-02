@@ -2,6 +2,8 @@ package com.nayanthayasiru.vhspringbackend.config;
 
 
 import com.nayanthayasiru.vhspringbackend.services.impl.CustomerDetailsService;
+import com.nayanthayasiru.vhspringbackend.utils.filters.JWTAuthFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,12 +16,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
-import static org.springframework.security.config.Customizer.withDefaults;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    @Autowired
+    private JWTAuthFilter jwtAuthFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -30,8 +33,8 @@ public class SecurityConfig {
                                 "/api/auth/register",
                                 "/api/auth/authenticate")
                         .permitAll()
-                        .anyRequest().authenticated())
-                .httpBasic(withDefaults());
+                        .anyRequest().authenticated());
+        http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
