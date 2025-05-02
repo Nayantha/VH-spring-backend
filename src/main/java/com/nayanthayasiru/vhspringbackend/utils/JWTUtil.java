@@ -40,7 +40,7 @@ public class JWTUtil {
     private Claims extractClaims(String token) {
         return Jwts.parserBuilder().setSigningKey(getSigningKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 
