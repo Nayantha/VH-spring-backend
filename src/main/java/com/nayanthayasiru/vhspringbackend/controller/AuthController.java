@@ -2,7 +2,7 @@ package com.nayanthayasiru.vhspringbackend.controller;
 
 import com.nayanthayasiru.vhspringbackend.models.DTOs.AuthResponseDTO;
 import com.nayanthayasiru.vhspringbackend.models.DTOs.RegisterRequestDTO;
-import com.nayanthayasiru.vhspringbackend.services.CustomerDetailsService;
+import com.nayanthayasiru.vhspringbackend.services.impl.CustomerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,9 +1,10 @@
-package com.nayanthayasiru.vhspringbackend.services;
+package com.nayanthayasiru.vhspringbackend.services.impl;
 
 import com.nayanthayasiru.vhspringbackend.models.Customer;
 import com.nayanthayasiru.vhspringbackend.models.DTOs.AuthResponseDTO;
 import com.nayanthayasiru.vhspringbackend.models.DTOs.RegisterRequestDTO;
 import com.nayanthayasiru.vhspringbackend.repositories.CustomerRepository;
+import com.nayanthayasiru.vhspringbackend.services.CustomerDetailsServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

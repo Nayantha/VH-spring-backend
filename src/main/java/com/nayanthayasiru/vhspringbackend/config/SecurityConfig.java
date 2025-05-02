@@ -1,8 +1,7 @@
 package com.nayanthayasiru.vhspringbackend.config;
 
 
-import com.nayanthayasiru.vhspringbackend.services.CustomerDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.nayanthayasiru.vhspringbackend.services.impl.CustomerDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
