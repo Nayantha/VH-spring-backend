@@ -41,4 +41,8 @@ public class JWTUtil {
                 .parseClaimsJwt(token)
                 .getBody();
     }
+
+    public Boolean isExpired(String token) {
+        return extractClaims(token).getExpiration().before(new Date());
+    }
 }
